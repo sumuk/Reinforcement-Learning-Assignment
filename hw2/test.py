@@ -1,0 +1,12 @@
+import tensorflow as tf
+import numpy as np
+
+a=[[1,2],[3,4]]
+b=[1,2]
+c=tf.placeholder(dtype=tf.float32,shape=(None,2))
+d=tf.placeholder(dtype=tf.float32,shape=(None))
+e=tf.reduce_sum(tf.multiply(c,tf.expand_dims(d,1)),axis=1)
+f=tf.nn.moments(e,[0])
+with tf.Session() as sess:
+	p=sess.run(e,feed_dict={c:a,d:b})
+	print p.shape
